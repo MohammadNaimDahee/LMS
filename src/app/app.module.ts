@@ -17,6 +17,13 @@ import {
   UserTrackingService,
 } from '@angular/fire/analytics';
 import { provideAuth, getAuth } from '@angular/fire/auth';
+import { StudentsComponent } from './components/student/students/students.component';
+import { AddStudentComponent } from './components/student/add-student/add-student.component';
+import { TeachersComponent } from './components/teacher/teachers/teachers.component';
+import { AddTeachersComponent } from './components/teacher/add-teachers/add-teachers.component';
+import { CoursesComponent } from './components/course/courses/courses.component';
+import { AddCourseComponent } from './components/course/add-course/add-course.component';
+import { AnalyticsComponent } from './components/analytics/analytics.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +34,13 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
     LoginComponent,
     AddUserComponent,
     NotFoundComponent,
+    StudentsComponent,
+    AddStudentComponent,
+    TeachersComponent,
+    AddTeachersComponent,
+    CoursesComponent,
+    AddCourseComponent,
+    AnalyticsComponent,
   ],
   imports: [
     BrowserModule,
