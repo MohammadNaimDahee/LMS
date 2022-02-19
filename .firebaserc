@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "learning-management-syst-ba7a6": {
+      "hosting": {
+        "lms": [
+          "learning-management-syst-ba7a6"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "learning-management-syst-ba7a6"
+  }
+}

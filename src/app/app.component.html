@@ -1,0 +1,14 @@
+<div *ngIf="setting.isLoggedIn; else notLoggedIn">
+  <app-header></app-header>
+  <div class="container w-full mx-auto pt-20">
+    <div class="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>
+
+<ng-template #notLoggedIn>
+  <app-login></app-login>
+</ng-template>
