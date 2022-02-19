@@ -11,6 +11,7 @@ import { Student } from 'src/app/models/Student';
   styleUrls: ['./edit-student.component.css'],
 })
 export class EditStudentComponent implements OnInit {
+  id: string = '';
   student: Student = {
     firstName: '',
     lastName: '',
@@ -30,14 +31,26 @@ export class EditStudentComponent implements OnInit {
 
   getStudent = () => {
     // get id from url
-    const id = this.route.snapshot.params['id'];
-    console.log(id);
+    this.id = this.route.snapshot.params['id'];
     // get the student;
-    this.studentService.getStudent(id || '').subscribe((student) => {
+    this.studentService.getStudent(this.id || '').subscribe((student) => {
       this.student = student;
       if (this.student.email === '') {
         this.router.navigate(['/404']);
       }
     });
+  };
+
+  onSubmit = (form: NgForm) => {
+    const { value, valid } = form;
+    if (!valid) {
+      alert('Please fill the form properly');
+    } else {
+      // Add id to client;
+      value.id = this.id;
+      // update the client
+      this.studentService.updateStudent(value);
+      this.router.navigate([`/students/`]);
+    }
   };
 }

@@ -192,27 +192,45 @@
       <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0">
         <li class="mr-6 my-2 md:my-0">
           <a
-            routerLink="/"
+            (click)="navigate('/')"
             class="
               block
               py-1
               md:py-3
               pl-1
               align-middle
-              text-blue-400
+              text-gray-500
               no-underline
               hover:text-gray-100
-              border-b-2 border-blue-400
+              border-b-2
               hover:border-blue-400
+              cursor-pointer
             "
+            [ngClass]="{
+              'border-blue-400': page === '/',
+              'border-gray-500': page !== '/'
+            }"
           >
-            <i class="fas fa-home fa-fw mr-3 text-blue-400"></i
-            ><span class="pb-1 md:pb-0 text-sm">Home</span>
+            <i
+              class="fas fa-home fa-fw mr-3"
+              [ngClass]="{
+                'text-blue-400': page === '/',
+                'text-gray-500': page !== '/'
+              }"
+            ></i
+            ><span
+              class="pb-1 md:pb-0 text-sm"
+              [ngClass]="{
+                'text-blue-400': page === '/',
+                'text-gray-500': page !== '/'
+              }"
+              >Home</span
+            >
           </a>
         </li>
         <li class="mr-6 my-2 md:my-0">
           <a
-            routerLink="/students"
+            (click)="navigate('/students')"
             class="
               block
               py-1
@@ -222,17 +240,35 @@
               text-gray-500
               no-underline
               hover:text-gray-100
-              border-b-2 border-gray-900
+              border-b-2
               hover:border-pink-400
+              cursor-pointer
             "
+            [ngClass]="{
+              'border-pink-400': page === '/students',
+              'border-gray-500': page !== '/students'
+            }"
           >
-            <i class="fas fa-user fa-fw mr-3"></i
-            ><span class="pb-1 md:pb-0 text-sm">Students</span>
+            <i
+              class="fas fa-user fa-fw mr-3"
+              [ngClass]="{
+                'text-pink-400': page === '/students',
+                'text-gray-500': page !== '/students'
+              }"
+            ></i
+            ><span
+              class="pb-1 md:pb-0 text-sm"
+              [ngClass]="{
+                'text-pink-400': page === '/students',
+                'text-gray-500': page !== '/students'
+              }"
+              >Students</span
+            >
           </a>
         </li>
         <li class="mr-6 my-2 md:my-0">
           <a
-            routerLink="/teachers"
+            (click)="navigate('/teachers')"
             class="
               block
               py-1
@@ -242,17 +278,35 @@
               text-gray-500
               no-underline
               hover:text-gray-100
-              border-b-2 border-gray-900
+              border-b-2
               hover:border-purple-400
+              cursor-pointer
             "
+            [ngClass]="{
+              'border-purple-400': page === '/teachers',
+              'border-gray-500': page !== '/teachers'
+            }"
           >
-            <i class="fa fa-graduation-cap fa-fw mr-3"></i
-            ><span class="pb-1 md:pb-0 text-sm">Teachers</span>
+            <i
+              class="fas fa-graduation-cap fa-fw mr-3"
+              [ngClass]="{
+                'text-purple-400': page === '/teachers',
+                'text-gray-500': page !== '/teachers'
+              }"
+            ></i
+            ><span
+              class="pb-1 md:pb-0 text-sm"
+              [ngClass]="{
+                'text-purple-400': page === '/teachers',
+                'text-gray-500': page !== '/teachers'
+              }"
+              >Teachers</span
+            >
           </a>
         </li>
         <li class="mr-6 my-2 md:my-0">
           <a
-            routerLink="/courses"
+            (click)="navigate('/courses')"
             class="
               block
               py-1
@@ -262,17 +316,35 @@
               text-gray-500
               no-underline
               hover:text-gray-100
-              border-b-2 border-gray-900
+              border-b-2
               hover:border-green-400
+              cursor-pointer
             "
+            [ngClass]="{
+              'border-green-400': page === '/courses',
+              'border-gray-500': page !== '/courses'
+            }"
           >
-            <i class="fas fa-book fa-fw mr-3"></i
-            ><span class="pb-1 md:pb-0 text-sm">Courses</span>
+            <i
+              class="fas fa-book fa-fw mr-3"
+              [ngClass]="{
+                'text-green-400': page === '/courses',
+                'text-gray-500': page !== '/courses'
+              }"
+            ></i
+            ><span
+              class="pb-1 md:pb-0 text-sm"
+              [ngClass]="{
+                'text-green-400': page === '/courses',
+                'text-gray-500': page !== '/courses'
+              }"
+              >Courses</span
+            >
           </a>
         </li>
         <li class="mr-6 my-2 md:my-0">
           <a
-            routerLink="/analytics"
+            (click)="navigate('/analytics')"
             class="
               block
               py-1
@@ -282,12 +354,30 @@
               text-gray-500
               no-underline
               hover:text-gray-100
-              border-b-2 border-gray-900
+              border-b-2
               hover:border-red-400
+              cursor-pointer
             "
+            [ngClass]="{
+              'border-red-400': page === '/analytics',
+              'border-gray-500': page !== '/analytics'
+            }"
           >
-            <i class="fa fa-chart-area fa-fw mr-3"></i
-            ><span class="pb-1 md:pb-0 text-sm">Analytics</span>
+            <i
+              class="fas fa-chart-area fa-fw mr-3"
+              [ngClass]="{
+                'text-red-400': page === '/analytics',
+                'text-gray-500': page !== '/analytics'
+              }"
+            ></i
+            ><span
+              class="pb-1 md:pb-0 text-sm"
+              [ngClass]="{
+                'text-red-400': page === '/analytics',
+                'text-gray-500': page !== '/analytics'
+              }"
+              >Analytics</span
+            >
           </a>
         </li>
       </ul>

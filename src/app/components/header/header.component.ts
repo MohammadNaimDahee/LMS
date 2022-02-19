@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { SettingService } from 'src/app/services/setting.service';
@@ -14,11 +15,14 @@ export class HeaderComponent implements OnInit {
   showMenuDev: boolean = true;
   setting: Setting;
   title = 'Learning Management System';
+  page: string;
   constructor(
     private authService: AuthService,
-    private settingService: SettingService
+    private settingService: SettingService,
+    private router: Router
   ) {
     this.setting = this.settingService.getSetting();
+    this.page = window.location.pathname;
   }
 
   ngOnInit(): void {}
@@ -27,5 +31,10 @@ export class HeaderComponent implements OnInit {
     this.authService.logout();
     this.settingService.changeSetting({ isLoggedIn: false });
     window.location.reload();
+  };
+
+  navigate = (page: string) => {
+    this.page = page;
+    this.router.navigate([page]);
   };
 }

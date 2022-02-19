@@ -10,7 +10,11 @@
           Edit {{ student.firstName }} {{ student.lastName }}
         </h5>
       </div>
-      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <form
+        class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        #clientForm="ngForm"
+        (ngSubmit)="onSubmit(clientForm)"
+      >
         <div class="flex flex-wrap -mx-3 mb-6">
           <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -22,7 +26,7 @@
                 font-bold
                 mb-2
               "
-              for="grid-first-name"
+              for="firstName"
             >
               First Name
             </label>
@@ -33,7 +37,7 @@
                 w-full
                 bg-gray-200
                 text-gray-700
-                border border-red-500
+                border
                 rounded
                 py-3
                 px-4
@@ -41,11 +45,22 @@
                 leading-tight
                 focus:outline-none focus:bg-white
               "
-              id="grid-first-name"
+              id="firstName"
               type="text"
               placeholder="Jane"
+              #studentFirstName="ngModel"
+              [(ngModel)]="student.firstName"
+              [ngClass]="{
+                'border-red-500':
+                  studentFirstName.errors && studentFirstName.touched
+              }"
+              name="firstName"
+              required
             />
-            <p class="text-red-500 text-xs italic">
+            <p
+              class="text-red-500 text-xs italic"
+              [hidden]="!studentFirstName.errors?.required"
+            >
               Please fill out this field.
             </p>
           </div>
@@ -59,7 +74,7 @@
                 font-bold
                 mb-2
               "
-              for="grid-last-name"
+              for="lastName"
             >
               Last Name
             </label>
@@ -77,10 +92,24 @@
                 leading-tight
                 focus:outline-none focus:bg-white focus:border-gray-500
               "
-              id="grid-last-name"
+              id="lastName"
               type="text"
               placeholder="Doe"
+              #studentLastName="ngModel"
+              [(ngModel)]="student.lastName"
+              [ngClass]="{
+                'border-red-500':
+                  studentLastName.errors && studentLastName.touched
+              }"
+              name="lastName"
+              required
             />
+            <p
+              class="text-red-500 text-xs italic"
+              [hidden]="!studentLastName.errors?.required"
+            >
+              Please fill out this field.
+            </p>
           </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-2">
@@ -94,7 +123,7 @@
                 font-bold
                 mb-2
               "
-              for="grid-city"
+              for="email"
             >
               Email
             </label>
@@ -112,10 +141,26 @@
                 leading-tight
                 focus:outline-none focus:bg-white focus:border-gray-500
               "
-              id="grid-city"
+              id="email"
               type="email"
-              placeholder="Albuquerque"
+              placeholder="jane.doe@domain.com"
+              #studentEmail="ngModel"
+              [(ngModel)]="student.email"
+              [ngClass]="{
+                'border-red-500': studentEmail.errors && studentEmail.touched
+              }"
+              name="email"
+              required
+              email
             />
+            <p
+              class="text-red-500 text-xs italic"
+              [hidden]="
+                !studentEmail.errors?.required && !studentEmail.errors?.email
+              "
+            >
+              Email is required
+            </p>
           </div>
           <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -127,7 +172,7 @@
                 font-bold
                 mb-2
               "
-              for="grid-state"
+              for="isActive"
             >
               Status
             </label>
@@ -147,10 +192,22 @@
                   leading-tight
                   focus:outline-none focus:bg-white focus:border-gray-500
                 "
-                id="grid-state"
+                id="isActive"
+                #isActive="ngModel"
+                [(ngModel)]="student.isActive"
+                [ngClass]="{
+                  'border-red-500': isActive.errors && isActive.touched
+                }"
+                name="isActive"
+                required
               >
-                <option value="1">Active</option>
-                <option value="0">In Active</option>
+                <option disabled>-- Select Status --</option>
+                <option [selected]="student.isActive" [ngValue]="true">
+                  Active
+                </option>
+                <option [selected]="!student.isActive" [ngValue]="false">
+                  In Active
+                </option>
               </select>
               <div
                 class="
@@ -175,6 +232,12 @@
                 </svg>
               </div>
             </div>
+            <p
+              class="text-red-500 text-xs italic"
+              [hidden]="!isActive.errors?.required"
+            >
+              Status is Required
+            </p>
           </div>
           <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -186,9 +249,9 @@
                 font-bold
                 mb-2
               "
-              for="grid-zip"
+              for="update"
             >
-              Zip
+              Action
             </label>
             <input
               class="
@@ -205,8 +268,7 @@
                 focus:outline-none focus:bg-white focus:border-gray-500
               "
               id="grid-zip"
-              type="text"
-              placeholder="90210"
+              type="submit"
             />
           </div>
         </div>
