@@ -9,6 +9,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AddStudentComponent } from './components/student/add-student/add-student.component';
+import { EditStudentComponent } from './components/student/edit-student/edit-student.component';
 import { StudentsComponent } from './components/student/students/students.component';
 import { AddTeachersComponent } from './components/teacher/add-teachers/add-teachers.component';
 import { TeachersComponent } from './components/teacher/teachers/teachers.component';
@@ -36,6 +37,11 @@ const routes: Routes = [
   {
     path: 'add-student',
     component: AddStudentComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-student/:id',
+    component: EditStudentComponent,
     canActivate: [AuthGuard],
   },
   {

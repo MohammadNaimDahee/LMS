@@ -3,7 +3,7 @@
     <!--Graph Card-->
     <div class="bg-gray-900 border border-gray-800 rounded shadow">
       <div class="border-b border-gray-800 p-3">
-        <h5 class="font-bold uppercase text-gray-600">Students</h5>
+        <h5 class="font-bold uppercase text-gray-400">Students</h5>
       </div>
       <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -85,6 +85,7 @@
                       border-b
                       dark:bg-gray-800 dark:border-gray-700
                     "
+                    *ngFor="let student of students"
                   >
                     <td
                       class="
@@ -95,7 +96,10 @@
                         dark:text-gray-400
                       "
                     >
-                      Sliver
+                      <img
+                        class="inline object-cover w-10 h-10 mr-2 rounded-full"
+                        src="{{ student.photoUrl }}"
+                      />
                     </td>
                     <td
                       class="
@@ -108,7 +112,19 @@
                         dark:text-white
                       "
                     >
-                      Apple MacBook Pro 17"
+                      {{ student.firstName }} {{ student.lastName }}
+                    </td>
+                    <td
+                      class="
+                        py-4
+                        px-6
+                        text-sm text-blue-500
+                        whitespace-nowrap
+                        dark:text-blue-400
+                        underline
+                      "
+                    >
+                      {{ student.email }}
                     </td>
                     <td
                       class="
@@ -119,18 +135,32 @@
                         dark:text-gray-400
                       "
                     >
-                      Laptop
-                    </td>
-                    <td
-                      class="
-                        py-4
-                        px-6
-                        text-sm text-gray-500
-                        whitespace-nowrap
-                        dark:text-gray-400
-                      "
-                    >
-                      $2999
+                      <span
+                        *ngIf="student.isActive"
+                        class="
+                          bg-green-500
+                          hover:bg-green-700
+                          text-white
+                          font-bold
+                          py-2
+                          px-4
+                          rounded
+                        "
+                        ><i class="fa fa-check"></i> Active</span
+                      >
+                      <span
+                        *ngIf="!student.isActive"
+                        class="
+                          bg-red-500
+                          hover:bg-red-700
+                          text-white
+                          font-bold
+                          py-2
+                          px-4
+                          rounded
+                        "
+                        ><i class="fa fa-times"></i> In Active</span
+                      >
                     </td>
                     <td
                       class="
@@ -143,7 +173,7 @@
                       "
                     >
                       <a
-                        href="#"
+                        routerLink="/edit-student/{{ student.id }}"
                         class="text-blue-600 dark:text-blue-500 hover:underline"
                         >Edit</a
                       >

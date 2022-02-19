@@ -24,6 +24,7 @@ import { AddTeachersComponent } from './components/teacher/add-teachers/add-teac
 import { CoursesComponent } from './components/course/courses/courses.component';
 import { AddCourseComponent } from './components/course/add-course/add-course.component';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
+import { EditStudentComponent } from './components/student/edit-student/edit-student.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AnalyticsComponent } from './components/analytics/analytics.component';
     CoursesComponent,
     AddCourseComponent,
     AnalyticsComponent,
+    EditStudentComponent,
   ],
   imports: [
     BrowserModule,
