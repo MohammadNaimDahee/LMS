@@ -2,8 +2,76 @@
   <div class="w-full p-3">
     <!--Graph Card-->
     <div class="bg-gray-900 border border-gray-800 rounded shadow">
-      <div class="border-b border-gray-800 p-3">
-        <h5 class="font-bold uppercase text-gray-400">Students</h5>
+      <div class="border-b border-gray-800 p-3 flex">
+        <h5 class="font-bold uppercase text-gray-400 flex-grow">Students</h5>
+        <button
+          (click)="getStudents()"
+          class="
+            bg-pink-500
+            hover:bg-pink-700
+            text-white
+            font-bold
+            py-2
+            px-4
+            rounded
+            ml-2
+            mr-1
+            text-xs
+          "
+        >
+          <i class="fa fa-user"></i> All
+        </button>
+
+        <button
+          (click)="filter(false)"
+          class="
+            bg-red-500
+            hover:bg-red-700
+            text-white
+            font-bold
+            py-2
+            px-4
+            rounded
+            ml-2
+            mr-1
+            text-xs
+          "
+        >
+          <i class="fa fa-times"></i> In Active
+        </button>
+        <button
+          (click)="filter(true)"
+          class="
+            bg-green-500
+            hover:bg-green-700
+            text-white
+            font-bold
+            py-2
+            px-4
+            rounded
+            ml-2
+            mr-2
+            text-xs
+          "
+        >
+          <i class="fa fa-check"></i> Active</button
+        ><a
+          routerLink="/add-student"
+          class="
+            bg-green-500
+            hover:bg-green-700
+            text-white
+            font-bold
+            py-2
+            px-4
+            rounded
+            ml-2
+            mr-2
+            text-xs
+          "
+        >
+          <i class="fa fa-plus"></i> Add Student
+        </a>
       </div>
       <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -145,6 +213,7 @@
                           py-2
                           px-4
                           rounded
+                          text-xs
                         "
                         ><i class="fa fa-check"></i> Active</span
                       >
@@ -158,6 +227,7 @@
                           py-2
                           px-4
                           rounded
+                          text-xs
                         "
                         ><i class="fa fa-times"></i> In Active</span
                       >

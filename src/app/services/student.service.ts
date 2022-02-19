@@ -17,13 +17,13 @@ export class StudentService {
   students!: Observable<Student[]>;
   student!: Observable<Student>;
   constructor(private afs: AngularFirestore) {
-    this.studentsCollection = this.afs.collection('student', (ref) =>
-      ref.orderBy('lastName', 'asc')
-    );
     this.students = this.getStudents();
   }
 
-  getStudents(): Observable<Student[]> {
+  getStudents = (): Observable<Student[]> => {
+    this.studentsCollection = this.afs.collection('student', (ref) =>
+      ref.orderBy('lastName', 'asc')
+    );
     // Get the students with the id.
     const students = this.studentsCollection.snapshotChanges().pipe(
       map((actions) =>
@@ -36,7 +36,25 @@ export class StudentService {
       )
     );
     return students;
-  }
+  };
+
+  filterStudents = (isActive: boolean): Observable<Student[]> => {
+    // Filter Students
+    this.studentsCollection = this.afs.collection('student', (ref) =>
+      ref.where('isActive', '==', isActive)
+    );
+    const students = this.studentsCollection.snapshotChanges().pipe(
+      map((actions) =>
+        actions.map((action) => {
+          let data = action.payload.doc.data() as Student;
+          const id = action.payload.doc.id;
+          data.id = id;
+          return data;
+        })
+      )
+    );
+    return students;
+  };
 
   newStudent = (student: Student) => {
     this.studentsCollection.add(student);

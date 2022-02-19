@@ -21,4 +21,10 @@ export class StudentsComponent implements OnInit {
       this.students = students;
     });
   };
+
+  filter = (isActive: boolean) => {
+    this.studentService.filterStudents(isActive).subscribe((students) => {
+      this.students = students;
+    });
+  };
 }
