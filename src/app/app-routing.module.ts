@@ -11,7 +11,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AddStudentComponent } from './components/student/add-student/add-student.component';
 import { EditStudentComponent } from './components/student/edit-student/edit-student.component';
 import { StudentsComponent } from './components/student/students/students.component';
-import { AddTeachersComponent } from './components/teacher/add-teachers/add-teachers.component';
+import { AddTeacherComponent } from './components/teacher/add-teacher/add-teacher.component';
+import { EditTeacherComponent } from './components/teacher/edit-teacher/edit-teacher.component';
 import { TeachersComponent } from './components/teacher/teachers/teachers.component';
 import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
@@ -51,7 +52,12 @@ const routes: Routes = [
   },
   {
     path: 'add-teacher',
-    component: AddTeachersComponent,
+    component: AddTeacherComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-teacher/:id',
+    component: EditTeacherComponent,
     canActivate: [AuthGuard],
   },
   {

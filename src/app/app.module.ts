@@ -21,12 +21,13 @@ import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
 import { StudentsComponent } from './components/student/students/students.component';
 import { AddStudentComponent } from './components/student/add-student/add-student.component';
 import { TeachersComponent } from './components/teacher/teachers/teachers.component';
-import { AddTeachersComponent } from './components/teacher/add-teachers/add-teachers.component';
 import { CoursesComponent } from './components/course/courses/courses.component';
 import { AddCourseComponent } from './components/course/add-course/add-course.component';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { EditStudentComponent } from './components/student/edit-student/edit-student.component';
 import { environment } from '../environments/environment';
+import { EditTeacherComponent } from './components/teacher/edit-teacher/edit-teacher.component';
+import { AddTeacherComponent } from './components/teacher/add-teacher/add-teacher.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,11 +40,12 @@ import { environment } from '../environments/environment';
     StudentsComponent,
     AddStudentComponent,
     TeachersComponent,
-    AddTeachersComponent,
     CoursesComponent,
     AddCourseComponent,
     AnalyticsComponent,
     EditStudentComponent,
+    EditTeacherComponent,
+    AddTeacherComponent,
   ],
   imports: [
     BrowserModule,
