@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { enc } from 'src/app/helpers/enc';
 import { Student } from 'src/app/models/Student';
+import { StorageService } from 'src/app/services/storage.service';
 import { StudentService } from 'src/app/services/student.service';
 import { environment } from 'src/environments/environment';
 
@@ -13,7 +13,10 @@ export class StudentsComponent implements OnInit {
   students: Student[] = [];
   dummyPhotoUrl: string = environment.appEnvs.dummyPhotoUrl;
 
-  constructor(private studentService: StudentService) {}
+  constructor(
+    private studentService: StudentService,
+    private storageService: StorageService
+  ) {}
 
   ngOnInit(): void {
     this.getStudents();
@@ -31,10 +34,14 @@ export class StudentsComponent implements OnInit {
     });
   };
 
-  deleteStudent = (id: string) => {
-    if (confirm('Are you sure?')) {
-      this.studentService.deleteStudent(id);
-      alert('Student Deleted');
+  deleteStudent = async (student: Student) => {
+    if (student.id !== '' && student.id !== undefined) {
+      if (confirm('Are you sure?')) {
+        if (student.photoUrl !== '' && student.photoUrl !== undefined) {
+          await this.storageService.deleteFile(student.photoUrl);
+        }
+        await this.studentService.deleteStudent(student.id);
+      }
     }
   };
 }

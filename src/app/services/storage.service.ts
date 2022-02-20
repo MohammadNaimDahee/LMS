@@ -4,7 +4,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 @Injectable({
   providedIn: 'root',
 })
-export class UploadService {
+export class StorageService {
   constructor(private afStorage: AngularFireStorage) {}
 
   uploadProfilePhoto = async (file: any, filePath: string) => {
@@ -14,5 +14,14 @@ export class UploadService {
   getProfileUrl = (path: string) => {
     const ref = this.afStorage.ref(path);
     return ref.getDownloadURL();
+  };
+
+  deleteFile = async (filePath: string) => {
+    try {
+      await this.afStorage.storage.refFromURL(filePath).delete();
+      return true;
+    } catch (error) {
+      return false;
+    }
   };
 }

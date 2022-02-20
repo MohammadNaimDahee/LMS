@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Student } from 'src/app/models/Student';
 import { StudentService } from 'src/app/services/student.service';
 import { enc } from 'src/app/helpers/enc';
-import { UploadService } from 'src/app/services/upload.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-add-student',
@@ -25,7 +25,7 @@ export class AddStudentComponent implements OnInit {
   constructor(
     private studentService: StudentService,
     private router: Router,
-    private uploadService: UploadService
+    private storageService: StorageService
   ) {}
 
   ngOnInit(): void {}
@@ -47,12 +47,12 @@ export class AddStudentComponent implements OnInit {
     this.loading = true;
     const file = event.target.files[0];
     const filePath = '/' + Math.floor(Math.random() * 1000000) + file.name;
-    await this.uploadService.uploadProfilePhoto(file, filePath);
+    await this.storageService.uploadProfilePhoto(file, filePath);
     this.getUploadUrl(filePath);
   };
 
   getUploadUrl = async (filePath: string) => {
-    this.uploadService.getProfileUrl(filePath).subscribe((res) => {
+    this.storageService.getProfileUrl(filePath).subscribe((res) => {
       this.student.photoUrl = res;
       this.loading = false;
     });

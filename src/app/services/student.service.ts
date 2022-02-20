@@ -89,8 +89,8 @@ export class StudentService {
     this.studentDoc.update(student);
   };
 
-  deleteStudent = (id: string) => {
+  deleteStudent = async (id: string) => {
     this.studentDoc = this.afs.doc(`student/${id}`);
-    this.studentDoc.delete();
+    await this.studentDoc.delete();
   };
 }
