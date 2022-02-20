@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { enc } from 'src/app/helpers/enc';
 import { Student } from 'src/app/models/Student';
 import { StudentService } from 'src/app/services/student.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-students',
@@ -10,6 +11,7 @@ import { StudentService } from 'src/app/services/student.service';
 })
 export class StudentsComponent implements OnInit {
   students: Student[] = [];
+  dummyPhotoUrl: string = environment.appEnvs.dummyPhotoUrl;
 
   constructor(private studentService: StudentService) {}
 
