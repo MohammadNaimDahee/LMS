@@ -106,7 +106,13 @@ export class DashboardComponent implements OnInit {
       .data(pie(data))
       .enter()
       .append('path')
-      .attr('d', d3.arc().innerRadius(0).outerRadius(this.radius))
+      .attr(
+        'd',
+        d3
+          .arc()
+          .innerRadius(this.radius / 3)
+          .outerRadius(this.radius)
+      )
       .attr('fill', (d: any, i: any) => this.colors(i))
       .attr('stroke', '#121926')
       .style('stroke-width', '1px');
