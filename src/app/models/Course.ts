@@ -1,3 +1,4 @@
+import { Enrol } from './Enrol';
 import { Teacher } from './Teacher';
 
 export interface Course {
@@ -7,4 +8,5 @@ export interface Course {
   cover: string;
   teacherId: string;
   teacher?: Teacher;
+  enrol?: Enrol[];
 }

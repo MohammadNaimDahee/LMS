@@ -4,6 +4,7 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { AnalyticsComponent } from './components/analytics/analytics.component';
 import { AddCourseComponent } from './components/course/add-course/add-course.component';
 import { CoursesComponent } from './components/course/courses/courses.component';
+import { EnrolStudentComponent } from './components/course/enrol-student/enrol-student.component';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
@@ -68,6 +69,11 @@ const routes: Routes = [
   {
     path: 'add-course',
     component: AddCourseComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'enrol-student/:id',
+    component: EnrolStudentComponent,
     canActivate: [AuthGuard],
   },
   {

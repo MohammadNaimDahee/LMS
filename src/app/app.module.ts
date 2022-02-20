@@ -28,6 +28,7 @@ import { EditStudentComponent } from './components/student/edit-student/edit-stu
 import { environment } from '../environments/environment';
 import { EditTeacherComponent } from './components/teacher/edit-teacher/edit-teacher.component';
 import { AddTeacherComponent } from './components/teacher/add-teacher/add-teacher.component';
+import { EnrolStudentComponent } from './components/course/enrol-student/enrol-student.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +47,7 @@ import { AddTeacherComponent } from './components/teacher/add-teacher/add-teache
     EditStudentComponent,
     EditTeacherComponent,
     AddTeacherComponent,
+    EnrolStudentComponent,
   ],
   imports: [
     BrowserModule,

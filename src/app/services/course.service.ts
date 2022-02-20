@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Course } from '../models/Course';
+import { EnrolService } from './enrol.service';
 import { TeacherService } from './teacher.service';
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,8 @@ export class CourseService {
   course!: Observable<Course>;
   constructor(
     private afs: AngularFirestore,
-    private teacherService: TeacherService
+    private teacherService: TeacherService,
+    private enrolService: EnrolService
   ) {
     this.coursesCollection = this.afs.collection('course');
     this.courses = this.getCourses();
@@ -39,6 +41,10 @@ export class CourseService {
             .subscribe((teacher) => {
               data.teacher = teacher;
             });
+          data.enrol = [];
+          this.enrolService.filterEnrols(data.id).subscribe((enrols) => {
+            data.enrol = enrols;
+          });
           return data;
         })
       )
@@ -73,7 +79,9 @@ export class CourseService {
             .subscribe((teacher) => {
               data.teacher = teacher;
             });
-
+          this.enrolService.filterEnrols(data.id).subscribe((enrols) => {
+            data.enrol = enrols;
+          });
           return data;
         }
       })

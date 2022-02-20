@@ -5,6 +5,7 @@
       <div class="border-b border-gray-800 p-3 flex">
         <h5 class="font-bold uppercase text-gray-400 flex-grow">Students</h5>
         <button
+          [hidden]="page !== ''"
           (click)="getStudents()"
           class="
             bg-pink-500
@@ -22,6 +23,7 @@
         </button>
 
         <button
+          [hidden]="page !== ''"
           (click)="filter(false)"
           class="
             bg-red-500
@@ -38,6 +40,7 @@
           <i class="fa fa-times"></i> In Active
         </button>
         <button
+          [hidden]="page !== ''"
           (click)="filter(true)"
           class="
             bg-green-500
@@ -54,6 +57,7 @@
           <i class="fa fa-check"></i> Active
         </button>
         <a
+          [hidden]="page !== ''"
           routerLink="/add-student"
           class="
             bg-green-500
@@ -123,6 +127,7 @@
                       Email
                     </th>
                     <th
+                      [hidden]="page === 'enrol'"
                       scope="col"
                       class="
                         py-3
@@ -196,6 +201,7 @@
                       {{ student.email }}
                     </td>
                     <td
+                      [hidden]="page !== ''"
                       class="
                         py-4
                         px-6
@@ -234,6 +240,7 @@
                       >
                     </td>
                     <td
+                      [hidden]="page !== ''"
                       class="
                         py-4
                         px-6
@@ -264,6 +271,34 @@
                         "
                         >Delete</a
                       >
+                    </td>
+                    <td
+                      [hidden]="page !== 'enrol'"
+                      class="
+                        py-4
+                        px-6
+                        text-sm
+                        font-medium
+                        text-right
+                        whitespace-nowrap
+                      "
+                    >
+                      <button
+                        id="student_{{ student.id }}"
+                        (click)="enrolStudent(student.id!)"
+                        class="
+                          bg-green-500
+                          hover:bg-green-700
+                          text-white
+                          font-bold
+                          py-1
+                          px-1
+                          rounded
+                          text-xs
+                        "
+                      >
+                        Enrol
+                      </button>
                     </td>
                   </tr>
                 </tbody>
