@@ -4,19 +4,26 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 
 import { Student } from '../models/Student';
 @Injectable({
   providedIn: 'root',
 })
 export class StudentService {
+  uploadPercent!: Observable<number | undefined>;
+  downloadURL!: Observable<string>;
   studentsCollection!: AngularFirestoreCollection<Student>;
   studentDoc!: AngularFirestoreDocument<Student>;
   students!: Observable<Student[]>;
   student!: Observable<Student>;
-  constructor(private afs: AngularFirestore) {
+  constructor(
+    private afs: AngularFirestore,
+    private afStorage: AngularFireStorage
+  ) {
     this.students = this.getStudents();
   }
 
@@ -88,8 +95,17 @@ export class StudentService {
     this.studentDoc.update(student);
   };
 
-  deleteStudent = (student: Student) => {
-    this.studentDoc = this.afs.doc(`student/${student.id}`);
+  deleteStudent = (id: string) => {
+    this.studentDoc = this.afs.doc(`student/${id}`);
     this.studentDoc.delete();
+  };
+
+  uploadProfilePhoto = async (file: any, filePath: string) => {
+    await this.afStorage.upload(filePath, file);
+  };
+
+  getProfileUrl = (path: string) => {
+    const ref = this.afStorage.ref(path);
+    return ref.getDownloadURL();
   };
 }

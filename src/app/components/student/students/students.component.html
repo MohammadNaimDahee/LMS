@@ -240,8 +240,24 @@
                     >
                       <a
                         routerLink="/edit-student/{{ student.id }}"
-                        class="text-blue-600 dark:text-blue-500 hover:underline"
+                        class="
+                          text-blue-600
+                          dark:text-blue-500
+                          mx-1
+                          hover:underline
+                        "
                         >Edit</a
+                      >
+                      <a
+                        (click)="deleteStudent(student.id!)"
+                        class="
+                          text-red-600
+                          dark:text-red-500
+                          mx-1
+                          hover:underline
+                          cursor-pointer
+                        "
+                        >Delete</a
                       >
                     </td>
                   </tr>
