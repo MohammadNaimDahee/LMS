@@ -64,6 +64,14 @@ export class DashboardComponent implements OnInit {
         };
         this.coursesRepData.push(courseRep);
       });
+      const device: string = this.getDevice();
+      switch (device) {
+        case 'mobile':
+          this.dims = { height: 400, width: 400, radius: 160 };
+          break;
+        default:
+          break;
+      }
       this.createSvg();
       this.createColors();
       this.drawChart(this.coursesRepData);
@@ -71,22 +79,19 @@ export class DashboardComponent implements OnInit {
   };
 
   private svg!: any;
-  private width = this.dims.width;
-  private height = this.dims.height;
   // The radius of the pie chart is half the smallest side
-  private radius = this.dims.radius;
   private colors!: any;
 
   private createSvg(): void {
     this.svg = d3
       .select('figure.figure')
       .append('svg')
-      .attr('width', this.width)
-      .attr('height', this.height)
+      .attr('width', this.dims.width)
+      .attr('height', this.dims.height)
       .append('g')
       .attr(
         'transform',
-        'translate(' + this.width / 2 + ',' + this.height / 2 + ')'
+        'translate(' + this.dims.width / 2 + ',' + this.dims.height / 2 + ')'
       );
   }
   private createColors(): void {
@@ -110,15 +115,18 @@ export class DashboardComponent implements OnInit {
         'd',
         d3
           .arc()
-          .innerRadius(this.radius / 3)
-          .outerRadius(this.radius)
+          .innerRadius(this.dims.radius / 3)
+          .outerRadius(this.dims.radius)
       )
       .attr('fill', (d: any, i: any) => this.colors(i))
       .attr('stroke', '#121926')
       .style('stroke-width', '1px');
 
     // Add labels
-    const labelLocation = d3.arc().innerRadius(100).outerRadius(this.radius);
+    const labelLocation = d3
+      .arc()
+      .innerRadius(100)
+      .outerRadius(this.dims.radius);
 
     this.svg
       .selectAll('pieces')
@@ -133,4 +141,17 @@ export class DashboardComponent implements OnInit {
       .style('text-anchor', 'middle')
       .style('font-size', 15);
   }
+
+  getDevice = (): string => {
+    var ua = navigator.userAgent;
+
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(
+        ua
+      )
+    )
+      return 'mobile';
+    else if (/Chrome/i.test(ua)) return 'chrome';
+    else return 'desktop';
+  };
 }
