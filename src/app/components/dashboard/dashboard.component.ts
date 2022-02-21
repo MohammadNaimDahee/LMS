@@ -21,6 +21,24 @@ export class DashboardComponent implements OnInit {
   dims = { height: 600, width: 600, radius: 300 };
   cent = { x: this.dims.width / 2 + 5, y: this.dims.height / 2 + 5 };
 
+  graph = {
+    data: [
+      {
+        x: this.coursesRepData.map((coures) => coures.course),
+        y: this.coursesRepData.map((coures) => coures.enrolled),
+        type: 'scatter',
+        mode: 'lines+points',
+        marker: { color: 'green' },
+      },
+      {
+        x: this.coursesRepData.map((coures) => coures.course),
+        y: this.coursesRepData.map((coures) => coures.enrolled),
+        type: 'bar',
+      },
+    ],
+    layout: { width: 320, height: 240, title: 'A Fancy Plot' },
+  };
+
   constructor(private dashboardService: DashboardService) {}
 
   ngOnInit(): void {}
@@ -72,6 +90,30 @@ export class DashboardComponent implements OnInit {
         default:
           break;
       }
+
+      // Plotly Graph
+      this.graph = {
+        data: [
+          {
+            x: this.coursesRepData.map((coures) => coures.course),
+            y: this.coursesRepData.map((coures) => coures.enrolled),
+            type: 'scatter',
+            mode: 'lines+points',
+            marker: { color: 'red' },
+          },
+          {
+            x: this.coursesRepData.map((coures) => coures.course),
+            y: this.coursesRepData.map((coures) => coures.enrolled),
+            type: 'bar',
+          },
+        ],
+        layout: {
+          width: this.dims.width - 70,
+          height: this.dims.height,
+          title: 'Enrolled Students per course',
+        },
+      };
+
       this.createSvg();
       this.createColors();
       this.drawChart(this.coursesRepData);
@@ -84,7 +126,7 @@ export class DashboardComponent implements OnInit {
 
   private createSvg(): void {
     this.svg = d3
-      .select('figure.figure')
+      .select('figure.figure1')
       .append('svg')
       .attr('width', this.dims.width)
       .attr('height', this.dims.height)

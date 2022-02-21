@@ -17,6 +17,8 @@ import {
 } from '@angular/fire/analytics';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
+import * as PlotlyJS from 'plotly.js-dist-min';
+import { PlotlyModule } from 'angular-plotly.js';
 
 import { StudentsComponent } from './components/student/students/students.component';
 import { AddStudentComponent } from './components/student/add-student/add-student.component';
@@ -29,6 +31,9 @@ import { environment } from '../environments/environment';
 import { EditTeacherComponent } from './components/teacher/edit-teacher/edit-teacher.component';
 import { AddTeacherComponent } from './components/teacher/add-teacher/add-teacher.component';
 import { EnrolStudentComponent } from './components/course/enrol-student/enrol-student.component';
+
+PlotlyModule.plotlyjs = PlotlyJS;
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +61,7 @@ import { EnrolStudentComponent } from './components/course/enrol-student/enrol-s
     AngularFireModule.initializeApp(environment.firebase),
     provideAuth(() => getAuth()),
     AngularFireStorageModule,
+    PlotlyModule,
   ],
   providers: [
     ScreenTrackingService,

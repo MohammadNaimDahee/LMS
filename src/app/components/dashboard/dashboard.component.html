@@ -116,14 +116,30 @@
 <hr class="border-b-2 border-gray-600 my-8 mx-4" />
 
 <div class="flex flex-row flex-wrap flex-grow mt-2">
-  <div class="w-full p-3">
+  <div class="w-full md:w-1/2 p-3">
     <!--Graph Card-->
     <div class="bg-gray-900 border border-gray-800 rounded shadow">
       <div class="border-b border-gray-800 p-3">
-        <h5 class="font-bold uppercase text-gray-600">Course Statistics</h5>
+        <h5 class="font-bold uppercase text-gray-600">
+          Course Statistics - D3JS
+        </h5>
       </div>
       <div class="flex justify-center items-center p-5" id="courseStats">
-        <figure class="figure"></figure>
+        <figure class="figure1"></figure>
+      </div>
+    </div>
+    <!--/Graph Card-->
+  </div>
+  <div class="w-full p-3 md:w-1/2">
+    <!--Graph Card-->
+    <div class="bg-gray-900 border border-gray-800 rounded shadow">
+      <div class="border-b border-gray-800 p-3">
+        <h5 class="font-bold uppercase text-gray-600">
+          Course Statistics - Plotly.js
+        </h5>
+      </div>
+      <div class="flex justify-center items-center p-5" id="plotly">
+        <plotly-plot [data]="graph.data" [layout]="graph.layout"></plotly-plot>
       </div>
     </div>
     <!--/Graph Card-->
