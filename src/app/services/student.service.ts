@@ -21,6 +21,8 @@ export class StudentService {
     this.students = this.getStudents();
   }
 
+  // Some changes
+
   getStudents = (): Observable<Student[]> => {
     this.studentsCollection = this.afs.collection('student', (ref) =>
       ref.orderBy('lastName', 'asc')
